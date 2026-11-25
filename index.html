@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#1E73BE">
+<title>Registan Math League</title>
+<link rel="icon" href="brand/rml-favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="brand/rml-favicon-32.png" type="image/png">
+<link rel="apple-touch-icon" href="brand/rml-app-icon-180.png" sizes="180x180">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@700;800&amp;family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@500&amp;family=Noto+Serif:wght@400;700&amp;display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css" crossorigin="anonymous">
+<script src="config.js"></script>
+<script>
+/* v2 switch. config.js v2: false = old design for everyone (rollback), 'test' = new design only after ?v2=1, true = new design for everyone.
+   ?v2=1 / ?v2=0 is remembered in localStorage (rm_v2). Both designs use the same API and the same saved answers. */
+(function () {
+  var cfg = (window.PORTAL_CONFIG || {}).v2, m = /[?&]v2=([01])/.exec(location.search), mine = null;
+  try { if (m) localStorage.setItem('rm_v2', m[1]); mine = localStorage.getItem('rm_v2'); } catch (e) { mine = m ? m[1] : null; }
+  var on = cfg === true ? mine !== '0' : cfg === 'test' ? mine === '1' : false;
+  window.RML_V2 = on;
+  var css = on ? ['v2.css'] : ['style.css', 'rml-brand.css'], js = on ? ['i18n.js', 'app2.js'] : ['i18n.js', 'app.js', 'rml-brand.js'];
+  window.RML_JS = js;
+  css.forEach(function (h) { document.write('<link rel="stylesheet" href="' + h + '">'); });
+})();
+</script>
+</head>
+<body>
+<div id="app"></div>
+<noscript>Please enable JavaScript.</noscript>
+<script>RML_JS.forEach(function (f) { document.write('<script src="' + f + '"><\/script>'); });</script>
+</body>
+</html>
